@@ -1,0 +1,15 @@
+.input-autocomplete {
+    padding: 1rem;
+    font-size: 23px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid lightgray;
+}
+
+.btn-plus {
+    border:none;
+    background: none;
+    border: 1px solid lightgray;
+    padding: 1rem 2rem;
+    font-size: 23px;
+    margin-left: .3rem;
+}
