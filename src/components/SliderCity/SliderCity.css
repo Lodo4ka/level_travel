@@ -1,0 +1,11 @@
+.rc-slider-tooltip-inner {
+  background-color: transparent;
+  color: black;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.rc-slider-handle:hover,.rc-slider-handle:active, .rc-slider-handle:focus {
+  border-color: transparent;
+  box-shadow: none;
+}
