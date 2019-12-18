@@ -1,17 +1,17 @@
-import { IMAGES } from "../constants";
+import { CARDS } from "../constants";
 
-const loadImages = () => ({
-  type: IMAGES.LOAD
+const loadCards = () => ({
+  type: CARDS.LOAD
 });
 
-const setImages = images => ({
-  type: IMAGES.LOAD_SUCCESS,
-  images
+const setCards = cards => ({
+  type: CARDS.LOAD_SUCCESS,
+  cards
 });
 
 const setError = error => ({
-  type: IMAGES.LOAD_FAIL,
+  type: CARDS.LOAD_FAIL,
   error
 });
 
-export { loadImages, setImages, setError };
+export {loadCards, setCards, setError}

@@ -79,8 +79,8 @@ class InputCity extends React.Component {
             renderSuggestion={renderSuggestion}
             inputProps={inputProps}
           />
-          <button className="btn-plus">+</button>
         </form>
+        <button className="btn-plus">+</button>
       </div>
     );
   }

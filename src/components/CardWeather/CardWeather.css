@@ -1,0 +1,59 @@
+.cards {
+  border: 1px solid lightgray;
+  max-width: 250px;
+  padding: 1rem;
+  max-height: 200px;
+  text-align: left;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 13px;
+  top: 12px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+
+.cards .title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cards .icon-container i {
+  font-size: 4rem;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.cards .celsius {
+  font-size: 2rem;
+}
+
+.cards .wind {
+  margin: 1rem 0;
+  font-size: 1.3rem;
+}
+
+.cards .pressure {
+  font-size: 1.3rem;
+}

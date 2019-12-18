@@ -1,0 +1,7 @@
+const CARDS = {
+  LOAD: "CARDS_LOAD",
+  LOAD_SUCCESS: "CARDS_LOAD_SUCCES",
+  LOAD_FAIL: "CARDS_LAOD_FAIL"
+};
+
+export { CARDS };
