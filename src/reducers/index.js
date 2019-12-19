@@ -2,11 +2,13 @@ import { combineReducers } from "redux";
 import loadingReducer from './loadingReducer';
 import cardsReducer from './cardsReducer';
 import errorReducer from './errorReducer';
+import weatherReducer from "./weatherReducer";
 
 const rootReducer = combineReducers({
   isLoading: loadingReducer,
   cards: cardsReducer,
-  error: errorReducer
+  error: errorReducer,
+  weather: weatherReducer
 });
 
 export default rootReducer;

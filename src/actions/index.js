@@ -1,6 +1,6 @@
 import { CARDS } from "../constants";
 
-const loadCards = () => ({
+const loadCards = city => ({
   type: CARDS.LOAD
 });
 

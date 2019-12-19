@@ -3,10 +3,10 @@ import './App.css';
 import 'weather-icons/css/weather-icons.css'
 import InputCity from './components/InputCiity/InputCity';
 import SliderCity from './components/SliderCity/SliderCity';
-import CardWeather from "./components/CardWeather/CardWeather";
-// import Dashboard from "./components/Dashboard/Dashboard";
-
-const apiKey = "8dc57cc9c86d270d365d053878b2d361";
+// import CardWeather from "./components/CardWeather/CardWeather";
+import configureStore from "./store";
+import { Provider } from 'react-redux';
+const store = configureStore();
 
 class App extends React.Component {
   constructor() {
@@ -29,7 +29,6 @@ class App extends React.Component {
       Clear: "wi-day-sunny",
       Clouds: "wi-day-fog"
     };
-    this.getWeather();
   }
 
   getWeatherIcon(icons, rangeId) {
@@ -68,26 +67,6 @@ class App extends React.Component {
     return tempCel;
   };
 
-  getWeather = async city => {
-    const apiCall = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city},ru&appid=${apiKey}`
-    );
-    const response = await apiCall.json();
-    this.setState({
-      city: `${response.name}`,
-      celsius: this.calCelsius(response.main.temp),
-      wind: response.wind.speed,
-      pressure: response.main.pressure,
-      error: false
-    });
-    this.getWeatherIcon(this.weatherIcon, response.weather[0].id);
-    console.log(response);
-  };
-
-  submitForm = e => {
-    e.preventDefault();
-    this.getWeather(e.target.elements[0].value);
-  };
 
   render() {
     const topStyle = {
@@ -96,21 +75,21 @@ class App extends React.Component {
       justifyContent: "center"
     };
     return (
-      <div className="App">
-        <div style={topStyle}>
-          <InputCity submitForm={this.submitForm} />
-          <SliderCity />
-        </div>
-        {/* <Dashboard> */}
-          <CardWeather
+      <Provider store={store}>
+        <div className="App">
+          <div style={topStyle}>
+            <InputCity/>
+            <SliderCity />
+          </div>
+          {/* <CardWeather
             city={this.state.city}
             weatherIcon={this.state.icon}
             tempСelsius={this.state.celsius}
             pressure={this.state.pressure}
             wind={this.state.wind}
-          />
-        {/* </Dashboard> */}
-      </div>
+          /> */}
+        </div>
+      </Provider>
     );
   }
 }

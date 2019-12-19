@@ -1,11 +1,9 @@
 import React from 'react';
 import './InputCity.css';
-// import Autocomplete from "react-autocomplete";
 import AutoSuggest from 'react-autosuggest';
 import russia from "../../0722a93c35dfba96337b-435b297ac6d90d13a68935e1ec7a69a225969e58/russia.json";
-// import cities from "cities.json";
-
-
+import { connect } from "react-redux";
+import {loadCards} from '../../actions';
 
 function escapeRegexCharacters(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -30,7 +28,6 @@ function getSuggestionValue(suggestion) {
 function renderSuggestion(suggestion) {
   return <span>{suggestion.city}</span>;
 }
-
 
 class InputCity extends React.Component {
   constructor(props) {
@@ -59,6 +56,11 @@ class InputCity extends React.Component {
     });
   };
 
+  submit(e) {
+    e.preventDefault();
+    loadCards(e.target.elements[0].value);
+  }
+
   render() {
     const { value, suggestions } = this.state;
     const inputProps = {
@@ -69,7 +71,7 @@ class InputCity extends React.Component {
 
     return (
       <div className="input-container">
-        <form onSubmit={this.props.submitForm}>
+        <form onSubmit={this.submit}>
           <AutoSuggest
             className="input-autocomplete"
             suggestions={suggestions}
@@ -86,5 +88,20 @@ class InputCity extends React.Component {
   }
 }
 
+const mapStateToProps = ({ isLoading, cards, error, weather }) => ({
+  isLoading,
+  cards,
+  error,
+  weather
+});
 
-export default InputCity;
+const mapDispatchToProps = dispatch => ({
+  loadCards: (city) => dispatch(loadCards(city)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InputCity);
+
+// export default InputCity;
