@@ -1,10 +1,17 @@
 import {CARDS} from '../constants';
 
 const cardsReducer = (state = [], action) => {
-  if(action.type === CARDS.LOAD_SUCCESS) {
-    debugger;
-    return [...state, action.cards]
-  }
+  // switch(action.type) {
+  //   case CARDS.LOAD: {
+  //     debugger;
+  //     return state;
+  //   }
+  //   default: {
+  //     debugger;
+  //     return state;
+  //   }
+  // }
+  debugger;
   return state;
 };
 

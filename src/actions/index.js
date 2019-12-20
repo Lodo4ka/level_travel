@@ -1,8 +1,9 @@
 import { CARDS } from "../constants";
 
-const loadCards = city => ({
-  type: CARDS.LOAD
-});
+const loadCards = city => {
+  return {type: CARDS.LOAD,
+  city}
+};
 
 const setCards = cards => ({
   type: CARDS.LOAD_SUCCESS,

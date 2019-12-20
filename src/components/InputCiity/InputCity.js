@@ -2,7 +2,8 @@ import React from 'react';
 import './InputCity.css';
 import AutoSuggest from 'react-autosuggest';
 import russia from "../../0722a93c35dfba96337b-435b297ac6d90d13a68935e1ec7a69a225969e58/russia.json";
-import { connect } from "react-redux";
+import { SubmissionError, reduxForm } from 'redux-form'
+import { connect} from "react-redux";
 import {loadCards} from '../../actions';
 
 function escapeRegexCharacters(str) {
@@ -88,20 +89,9 @@ class InputCity extends React.Component {
   }
 }
 
-const mapStateToProps = ({ isLoading, cards, error, weather }) => ({
-  isLoading,
-  cards,
-  error,
-  weather
-});
-
-const mapDispatchToProps = dispatch => ({
-  loadCards: (city) => dispatch(loadCards(city)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(InputCity);
-
 // export default InputCity;
+const mapDispatchToProps = dispatch => ({
+  toggleTodo: city => dispatch(loadCards(city))
+});
+
+export default connect(null, mapDispatchToProps)(InputCity);

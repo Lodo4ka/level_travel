@@ -5,10 +5,11 @@ import errorReducer from './errorReducer';
 import weatherReducer from "./weatherReducer";
 
 const rootReducer = combineReducers({
-  isLoading: loadingReducer,
-  cards: cardsReducer,
-  error: errorReducer,
-  weather: weatherReducer
+  // isLoading: loadingReducer,
+  // cards: cardsReducer,
+  // error: errorReducer,
+  // weather: weatherReducer
+  cards: cardsReducer
 });
 
 export default rootReducer;

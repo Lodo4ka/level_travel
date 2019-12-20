@@ -4,9 +4,6 @@ import 'weather-icons/css/weather-icons.css'
 import InputCity from './components/InputCiity/InputCity';
 import SliderCity from './components/SliderCity/SliderCity';
 // import CardWeather from "./components/CardWeather/CardWeather";
-import configureStore from "./store";
-import { Provider } from 'react-redux';
-const store = configureStore();
 
 class App extends React.Component {
   constructor() {
@@ -75,7 +72,6 @@ class App extends React.Component {
       justifyContent: "center"
     };
     return (
-      <Provider store={store}>
         <div className="App">
           <div style={topStyle}>
             <InputCity/>
@@ -89,7 +85,6 @@ class App extends React.Component {
             wind={this.state.wind}
           /> */}
         </div>
-      </Provider>
     );
   }
 }
