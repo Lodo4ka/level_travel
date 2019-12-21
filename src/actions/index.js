@@ -1,13 +1,14 @@
-import { CARDS } from "../constants";
+import translate from "translate";
+import { CARDS, TEMP } from "../constants";
 
-const loadCards = city => {
-  return {type: CARDS.LOAD,
-  city}
-};
+const loadCards = city => ({
+  type: CARDS.LOAD,
+  city
+});
 
-const setCards = cards => ({
+const setCards = card => ({
   type: CARDS.LOAD_SUCCESS,
-  cards
+  card
 });
 
 const setError = error => ({
@@ -15,4 +16,27 @@ const setError = error => ({
   error
 });
 
-export {loadCards, setCards, setError}
+const setTemp = temp => ({
+  type: TEMP.TEMP_SET,
+  temp
+})
+
+const translateWordRuToEn = async (word) => {
+  return await translate(word, {
+    from: 'ru',
+    to: "en",
+    engine: "google",
+    key: "AIzaSyA_Oss7u3k1mKG_Hh_rOUFZtNeioDmIGA8"
+  });
+}
+
+const translateWordEnToRu = async (word) => {
+  return await translate(word, {
+    from: 'en',
+    to: "ru",
+    engine: "google",
+    key: "AIzaSyA_Oss7u3k1mKG_Hh_rOUFZtNeioDmIGA8"
+  });
+}
+
+export {loadCards, setCards, setError, translateWordRuToEn, translateWordEnToRu}

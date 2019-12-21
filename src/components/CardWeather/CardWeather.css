@@ -1,4 +1,8 @@
-.cards {
+.card-wrapper {
+  padding: 0 .5rem;
+}
+
+.card {
   border: 1px solid lightgray;
   max-width: 250px;
   padding: 1rem;

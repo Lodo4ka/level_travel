@@ -2,7 +2,7 @@ import React from 'react';
 import './InputCity.css';
 import AutoSuggest from 'react-autosuggest';
 import russia from "../../0722a93c35dfba96337b-435b297ac6d90d13a68935e1ec7a69a225969e58/russia.json";
-import { connect, bind} from "react-redux";
+import { connect} from "react-redux";
 import {loadCards} from '../../actions';
 
 function escapeRegexCharacters(str) {
@@ -30,6 +30,7 @@ function renderSuggestion(suggestion) {
 }
 
 class InputCity extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -56,10 +57,8 @@ class InputCity extends React.Component {
     });
   };
 
-  submit = (e) => {
-    e.preventDefault();
-    // loadCards(e.target.elements[0].value);
-    this.props.dispatch(loadCards(e.target.elements[0].value));
+  searchCity = (e) => {
+    this.props.dispatch(loadCards(e.target.previousElementSibling.children[0].children[0].value));
   }
 
   render() {
@@ -72,7 +71,7 @@ class InputCity extends React.Component {
 
     return (
       <div className="input-container">
-        <form onSubmit={this.submit}>
+        <form onSubmit={e => e.preventDefault()} className="form-input">
           <AutoSuggest
             className="input-autocomplete"
             suggestions={suggestions}
@@ -83,15 +82,10 @@ class InputCity extends React.Component {
             inputProps={inputProps}
           />
         </form>
-        <button className="btn-plus">+</button>
+        <button onClick={this.searchCity} className="btn-plus">+</button>
       </div>
     );
   }
 }
-
-// export default InputCity;
-// const mapDispatchToProps = dispatch => ({
-//   toggleTodo: city => dispatch(loadCards(city))
-// });
 
 export default connect(null, null)(InputCity);

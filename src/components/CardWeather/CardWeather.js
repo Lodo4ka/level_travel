@@ -9,6 +9,7 @@ export default function CardWeather(props) {
   useEffect(() => {
     async function translateWord() {
       const word = await translate(props.city, {
+        from: 'en',
         to: "ru",
         engine: "google",
         key: "AIzaSyA_Oss7u3k1mKG_Hh_rOUFZtNeioDmIGA8"
@@ -19,34 +20,25 @@ export default function CardWeather(props) {
   }, [props.city]);
 
   return (
-    <div className="cards">
+    <div className="card-wrapper">
+    <div className="card">
       <div className="title">
         <strong>{translateWord}</strong>
         <span className="close"></span>
       </div>
       <span className="icon-container">
-        <i className={`wi ${props.weatherIcon} display-1`}></i>
+        <i className={`wi ${props.weatherIcon.icon} display-1`}></i>
       </span>
 
       {props.tempСelsius ? (
         <span className="celsius">{props.tempСelsius}&deg;C</span>
       ) : null}
 
-      {/* {minmaxTemp(props.tempMin, props.tempMax)} */}
-
       <div className="wind">Ветер: {props.wind} м/с</div>
       <div className="pressure">
         Давление: {props.pressure} мм
       </div>
     </div>
+    </div>
   );
-
-  // function minmaxTemp(min, max) {
-  //   return (
-  //     <h3>
-  //       <span>{min}&deg;</span>
-  //       <span>{max}&deg;</span>
-  //     </h3>
-  //   );
-  // }
 }
