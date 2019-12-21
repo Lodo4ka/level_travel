@@ -1,7 +1,9 @@
 import React from 'react';
 import Slider, { createSliderWithTooltip } from "rc-slider";
 import 'rc-slider/assets/index.css';
-import './SliderCity.css';;
+import './SliderCity.css';
+import { connect} from "react-redux";
+import { setTemp } from '../../actions'
 
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
@@ -9,15 +11,15 @@ function celFormatter(v) {
   return `${v} °C`;
 }
 
-export default function SliderCity() {
+function SliderCity(props) {
 
     const styleContainer = { width: 200, margin: 50, textAlign: 'left' };
     const styleLabel = {display: 'inline-block', marginBottom: '1rem'}
           
-    function log(value) {
-      console.log(value);
+    function changeVal(value) {
+      setTempAction(value)
     }
-
+    const { temp, setTempAction } = props;
     return (
       <div style={styleContainer}>
         <label style={styleLabel}>Где сейчас теплее, чем</label>
@@ -26,8 +28,8 @@ export default function SliderCity() {
           reverse
           min={-30}
           tipProps={{ visible: true, placement: "bottom" }}
-          onChange={log}
-          defaultValue={0}
+          onChange={changeVal}
+          defaultValue={temp}
           placement="bottom"
           max={30}
           trackStyle={{ backgroundColor: "gray" }}
@@ -43,3 +45,13 @@ export default function SliderCity() {
       </div>
     );
 }
+
+const mapStateToProps = ({ temp }) => ({
+  temp
+});
+
+const mapDispatchToProps = dispatch => ({
+  setTempAction: (value) => dispatch(setTemp(value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SliderCity);

@@ -39,4 +39,4 @@ const translateWordEnToRu = async (word) => {
   });
 }
 
-export {loadCards, setCards, setError, translateWordRuToEn, translateWordEnToRu}
+export {loadCards, setCards, setError, translateWordRuToEn, translateWordEnToRu, setTemp};

@@ -5,6 +5,7 @@ import { weatherIcon } from '../../constants';
 import './Dashboard.css';
 
 function Dashboard(props) {
+
   const getWeatherIcon = (icons, rangeId) => {
     switch (true) {
       case rangeId >= 200 && rangeId < 232:
@@ -34,10 +35,14 @@ function Dashboard(props) {
     return tempCel;
   };
 
+  const { cards, temp } = props;
+
   return (
     <div className="dashboard">
       {
-        props.cards.map((card, index) => (
+        cards.map((card, index) => (
+          calCelsius(card.main.temp) > temp 
+          &&
           <CardWeather 
             key={index}
             city={card.name}
@@ -52,8 +57,9 @@ function Dashboard(props) {
   )
 }
 
-const mapStateToProps = ({cards}) => ({
-  cards
+const mapStateToProps = ({cards, temp}) => ({
+  cards,
+  temp
 })
 
 export default connect(mapStateToProps, null)(Dashboard);

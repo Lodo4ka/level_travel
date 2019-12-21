@@ -1,4 +1,4 @@
-import { put, takeEvery, call, select } from 'redux-saga/effects';
+import { put, takeEvery, call } from 'redux-saga/effects';
 import { setError, setCards, translateWordRuToEn } from '../actions';
 import { CARDS } from '../constants';
 import { fetchWeather } from '../api';
