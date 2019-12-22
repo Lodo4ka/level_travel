@@ -1,21 +1,29 @@
- 
-const http = require('http');
-const russia = require('./russia.json.js.js');
+const express = require('express');
+const bodyParser = require('body-parser');
+const russia = require('./russia.json');
+const cors = require('cors')
 
-const app = http.createServer((req,res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', "*");
+const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
 
-    req.on('error', err => {
-        console.error(err);
-        res.statusCode = 400;
-        res.end('400: Bad Request');
-        console.error(err);
-        return;
-    });
+function escapeRegexCharacters(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
-    if(req.url === '/') {
-      res.end(JSON.stringify(russia));
-    }
+app.post('/', (req, res) => {
+  const escapedValue = escapeRegexCharacters(req.body.value.trim());
+
+  if (escapedValue === "") {
+    return [];
+  }
+
+  const regex = new RegExp("^" + escapedValue, "i");
+  const result = russia.filter(language => regex.test(language.city));
+  res.json(result);
 });
-app.listen(3001);
+
+app.listen(3001, () => {
+  console.log('Server started');
+});

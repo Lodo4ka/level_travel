@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   error: errorReducer,
   cards: cardsReducer,
   temp: tempReducer,
-  city: cityReducer
+  cities: cityReducer
 });
 
 export default rootReducer;

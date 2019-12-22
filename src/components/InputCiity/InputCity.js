@@ -2,30 +2,10 @@ import React from 'react';
 import './InputCity.css';
 import AutoSuggest from 'react-autosuggest';
 import { connect} from "react-redux";
-import { loadCards } from '../../actions';
-
-function escapeRegexCharacters(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function getSuggestions(value) {
-  const escapedValue = escapeRegexCharacters(value.trim());
-
-  if (escapedValue === "") {
-    return [];
-  }
-
-  const regex = new RegExp("^" + escapedValue, "i");
-
-  return russia.filter(language => regex.test(language.city));
-}
-
-function getSuggestionValue(suggestion) {
-  return suggestion.city;
-}
+import { loadCards, loadCity, clearCity } from '../../actions';
 
 function renderSuggestion(suggestion) {
-  return <span>{suggestion.city}</span>;
+  return <span>{suggestion}</span>;
 }
 
 class InputCity extends React.Component {
@@ -33,8 +13,7 @@ class InputCity extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
-      suggestions: []
+      value: ""
     };
   }
 
@@ -45,20 +24,16 @@ class InputCity extends React.Component {
   };
 
   onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: getSuggestions(value)
-    });
+    this.props.loadCity(value);
   };
 
   onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: []
-    });
+    this.props.clearCity();
   };
 
   render() {
-    const { value, suggestions } = this.state;
-    const {loadImages} = this.props;
+    const { value } = this.state;
+    const {loadImages, cities} = this.props;
     const inputProps = {
       placeholder: "Введите город",
       value,
@@ -70,10 +45,10 @@ class InputCity extends React.Component {
         <form onSubmit={e => e.preventDefault()} className="form-input">
           <AutoSuggest
             className="input-autocomplete"
-            suggestions={suggestions}
+            suggestions={cities}
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            getSuggestionValue={getSuggestionValue}
+            getSuggestionValue={(cities) => cities}
             renderSuggestion={renderSuggestion}
             inputProps={inputProps}
           />
@@ -85,9 +60,15 @@ class InputCity extends React.Component {
   }
 }
 
+const mapStateToProps = ({cities}) => ({
+  cities
+});
+
 const mapDispatchToProps = dispatch => ({
   loadImages: (value) => dispatch(loadCards(value)),
+  loadCity: (word, regex) => dispatch(loadCity(word, regex)),
+  clearCity: () => dispatch(clearCity())
 });
 
 
-export default connect(null, mapDispatchToProps)(InputCity);
+export default connect(mapStateToProps, mapDispatchToProps)(InputCity);

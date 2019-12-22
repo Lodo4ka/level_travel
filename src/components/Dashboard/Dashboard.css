@@ -1,5 +1,6 @@
 .dashboard {
   display: flex;
   margin: 0 -8px;
-  min-height: 110px;
+  min-height: 200px;
+  flex-wrap: wrap;
 }

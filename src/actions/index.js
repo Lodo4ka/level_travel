@@ -1,4 +1,3 @@
-import translate from "translate";
 import { CARDS, TEMP, CITY } from "../constants";
 
 const loadCards = city => ({
@@ -21,14 +20,18 @@ const setErrorLoadCards = error => ({
   error
 });
 
-const loadCity = word => ({
+const loadCity = (value) => ({
   type: CITY.LOAD,
-  word
+  value
 });
 
 const setCity = city => ({
   type: CITY.LOAD_SUCCESS,
   city
+});
+
+const clearCity = () => ({
+  type: CITY.CLEAR
 });
 
 const setErrorLoadCity = error => ({
@@ -43,4 +46,4 @@ const setTemp = temp => ({
 
 
 export { loadCards, setCards, setErrorLoadCards, setTemp, deleteCards, loadCity,
-setCity, setErrorLoadCity};
+setCity, setErrorLoadCity, clearCity};

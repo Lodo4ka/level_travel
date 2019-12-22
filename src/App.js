@@ -4,6 +4,7 @@ import 'weather-icons/css/weather-icons.css'
 import InputCity from './components/InputCiity/InputCity';
 import SliderCity from './components/SliderCity/SliderCity';
 import Dashboard from './components/Dashboard/Dashboard';
+import Error from './components/Error';
 
 class App extends React.Component {
   constructor() {
@@ -25,6 +26,7 @@ class App extends React.Component {
     };
     return (
         <div className="App">
+          <Error/>
           <div style={topStyle}>
             <InputCity/>
             <SliderCity />

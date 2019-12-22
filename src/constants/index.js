@@ -14,6 +14,7 @@ const CITY = {
   LOAD: "CITY_LOAD",
   LOAD_SUCCESS: "CITY_LOAD_SUCCES",
   LOAD_FAIL: "CITY_LAOD_FAIL",
+  CLEAR: "CLEAR_CITY"
 }
 
 const weatherIcon = {
