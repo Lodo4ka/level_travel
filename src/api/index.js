@@ -12,4 +12,15 @@ const fetchWeather = async city => {
   return data;
 };
 
-export { fetchWeather };
+const fetchCity = async word => {
+  const response = await fetch(
+    `http://localhost:3001`
+  );
+  const data = await response.json();
+  if(response.status >= 400) {
+    throw new Error(data.errors);
+  }
+  return data;
+}
+
+export { fetchWeather, fetchCity };

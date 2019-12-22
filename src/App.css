@@ -1,3 +1,7 @@
+button:focus {
+  outline: none;
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -6,6 +10,8 @@
   justify-content: center;
   height: 100vh;
   font-family: 'Roboto', sans-serif;
+  max-width: 650px;
+  margin: auto;
 }
 
 .App-logo {

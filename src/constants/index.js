@@ -1,12 +1,19 @@
 const CARDS = {
   LOAD: "CARDS_LOAD",
   LOAD_SUCCESS: "CARDS_LOAD_SUCCES",
-  LOAD_FAIL: "CARDS_LAOD_FAIL"
+  LOAD_FAIL: "CARDS_LAOD_FAIL",
+  DELETE: "CARDS_DELETE"
 };
 
 const TEMP = {
   TEMP_SET: "TEMP_SET",
   TEMP_FAIL: "TEMP_FAIL"
+}
+
+const CITY = {
+  LOAD: "CITY_LOAD",
+  LOAD_SUCCESS: "CITY_LOAD_SUCCES",
+  LOAD_FAIL: "CITY_LAOD_FAIL",
 }
 
 const weatherIcon = {
@@ -19,4 +26,4 @@ const weatherIcon = {
   Clouds: "wi-day-fog"
 };
 
-export { CARDS, weatherIcon, TEMP };
+export { CARDS, weatherIcon, TEMP, CITY };

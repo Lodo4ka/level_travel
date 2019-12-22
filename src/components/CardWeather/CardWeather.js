@@ -1,44 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import translate from "translate";
+import { connect } from 'react-redux';
+import {deleteCards} from '../../actions';
 import './CardWeather.css';
 
-export default function CardWeather(props) {
+function CardWeather(props) {
 
-  const [translateWord, setTranslateWord] = useState('');
-
-  useEffect(() => {
-    async function translateWord() {
-      const word = await translate(props.city, {
-        from: 'en',
-        to: "ru",
-        engine: "google",
-        key: "AIzaSyA_Oss7u3k1mKG_Hh_rOUFZtNeioDmIGA8"
-      });
-      setTranslateWord(word);
-    }
-    translateWord();
-  }, [props.city]);
+  const {deleteAction, id, weatherIcon, tempСelsius, wind, city, pressure} = props;
 
   return (
     <div className="card-wrapper">
     <div className="card">
       <div className="title">
-        <strong>{translateWord}</strong>
-        <span className="close"></span>
+        <span className="city-name">{city}</span>
+        <span className="close" onClick={() => deleteAction(id)}></span>
       </div>
       <span className="icon-container">
-        <i className={`wi ${props.weatherIcon.icon} display-1`}></i>
+        <i className={`wi ${weatherIcon.icon} display-1`}></i>
       </span>
 
-      {props.tempСelsius ? (
-        <span className="celsius">{props.tempСelsius}&deg;C</span>
-      ) : null}
+      <span className="celsius">{tempСelsius}&deg;C</span>
 
-      <div className="wind">Ветер: {props.wind} м/с</div>
+      <div className="wind">Ветер: {wind} м/с</div>
       <div className="pressure">
-        Давление: {props.pressure} мм
+        Давление: {pressure} мм
       </div>
     </div>
     </div>
   );
 }
+
+const mapDispatchToProps = dispatch => ({
+  deleteAction: (id) => dispatch(deleteCards(id))
+});
+
+export default connect(null, mapDispatchToProps)(CardWeather);

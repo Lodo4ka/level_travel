@@ -22,7 +22,6 @@ class App extends React.Component {
     const topStyle = {
       display: "flex",
       alignItems: "center",
-      justifyContent: "center"
     };
     return (
         <div className="App">

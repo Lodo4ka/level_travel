@@ -1,6 +1,6 @@
 import {CARDS} from '../constants';
 
-const loadingReducer = (state = false, action) => {
+const loadingCardsReducer = (state = false, action) => {
   switch(action.type) {
     case CARDS.LOAD:
       return true;
@@ -14,4 +14,4 @@ const loadingReducer = (state = false, action) => {
   }
 }
 
-export default loadingReducer;
+export default loadingCardsReducer;

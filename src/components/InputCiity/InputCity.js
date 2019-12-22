@@ -1,9 +1,8 @@
 import React from 'react';
 import './InputCity.css';
 import AutoSuggest from 'react-autosuggest';
-import russia from "../../0722a93c35dfba96337b-435b297ac6d90d13a68935e1ec7a69a225969e58/russia.json";
 import { connect} from "react-redux";
-import {loadCards} from '../../actions';
+import { loadCards } from '../../actions';
 
 function escapeRegexCharacters(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -57,12 +56,9 @@ class InputCity extends React.Component {
     });
   };
 
-  searchCity = (e) => {
-    this.props.dispatch(loadCards(e.target.previousElementSibling.children[0].children[0].value));
-  }
-
   render() {
     const { value, suggestions } = this.state;
+    const {loadImages} = this.props;
     const inputProps = {
       placeholder: "Введите город",
       value,
@@ -82,10 +78,16 @@ class InputCity extends React.Component {
             inputProps={inputProps}
           />
         </form>
-        <button onClick={this.searchCity} className="btn-plus">+</button>
+        <button onClick={e => loadImages(e.target.previousElementSibling.children[0].children[0].value)}
+         className="btn-plus">+</button>
       </div>
     );
   }
 }
 
-export default connect(null, null)(InputCity);
+const mapDispatchToProps = dispatch => ({
+  loadImages: (value) => dispatch(loadCards(value)),
+});
+
+
+export default connect(null, mapDispatchToProps)(InputCity);

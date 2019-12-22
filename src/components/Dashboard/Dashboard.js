@@ -45,6 +45,7 @@ function Dashboard(props) {
           &&
           <CardWeather 
             key={index}
+            id={card.id}
             city={card.name}
             weatherIcon={getWeatherIcon(weatherIcon, card.weather[0].id)}
             tempСelsius={calCelsius(card.main.temp)}
