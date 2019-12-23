@@ -1,21 +1,36 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React, {useEffect, useState} from 'react'
+import { connect } from 'react-redux';
+import translate from 'translate';
 
-export default function Error(props) {
+function Error(props) {
   
-  const {error} = props;
+  const { error } = props;
+
+  const [translateWord, setTranslateWord] = useState('');
+
+  useEffect(() => {
+    async function translateWord() {
+      const word = await translate(error, {
+        to: "ru",
+        engine: "google",
+        key: "AIzaSyA_Oss7u3k1mKG_Hh_rOUFZtNeioDmIGA8"
+      });
+      setTranslateWord(word);
+    }
+    translateWord();
+  }, [error]);
 
   return (
     <div>
-      <div>
-        {error}
+      <div style={{color: 'red'}}>
+        {translateWord}
       </div>
     </div>
   )
 }
 
-const mapStateToProps = ({error}) => ({
+const mapStateToProps = ({ error }) => ({
   error
-})
+});
 
-connect(mapStateToProps, null)(Error);
+export default connect(mapStateToProps, null)(Error);

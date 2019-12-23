@@ -1,4 +1,4 @@
-import { put, call, takeLatest, takeEvery } from 'redux-saga/effects';
+import { put, call, takeEvery } from 'redux-saga/effects';
 import { CITY } from '../constants';
 import {setCity, setErrorLoadCity} from '../actions';
 import { fetchCity } from '../api'

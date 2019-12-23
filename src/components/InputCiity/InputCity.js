@@ -4,9 +4,6 @@ import AutoSuggest from 'react-autosuggest';
 import { connect} from "react-redux";
 import { loadCards, loadCity, clearCity } from '../../actions';
 
-function renderSuggestion(suggestion) {
-  return <span>{suggestion}</span>;
-}
 
 class InputCity extends React.Component {
 
@@ -15,6 +12,10 @@ class InputCity extends React.Component {
     this.state = {
       value: ""
     };
+  }
+
+  renderSuggestion = (suggestion) => {
+    return <span>{suggestion}</span>;
   }
 
   onChange = (event, { newValue }) => {
@@ -49,7 +50,7 @@ class InputCity extends React.Component {
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             getSuggestionValue={(cities) => cities}
-            renderSuggestion={renderSuggestion}
+            renderSuggestion={this.renderSuggestion}
             inputProps={inputProps}
           />
         </form>

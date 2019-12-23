@@ -1,13 +1,13 @@
 import {CARDS, CITY} from '../constants';
 
-const errorReducer = (state = null, action) => {
+const errorReducer = (state = "", action) => {
   switch (action.type) {
     case CARDS.LOAD_FAIL:
       return action.error.message;
     case CITY.LOAD_FAIL:
       return action.error;
     case CARDS.LOAD_SUCCESS:
-      return null;
+      return "";
       
     default:
       return state;

@@ -50,7 +50,7 @@ function Dashboard(props) {
             weatherIcon={getWeatherIcon(weatherIcon, card.weather[0].id)}
             tempСelsius={calCelsius(card.main.temp)}
             pressure={card.main.pressure}
-            wind={card.main.wind}
+            wind={card.wind.speed}
           />
         ))
       }

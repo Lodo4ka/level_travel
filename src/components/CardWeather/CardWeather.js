@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import translate from "translate";
+import React from 'react';
 import { connect } from 'react-redux';
 import {deleteCards} from '../../actions';
 import './CardWeather.css';
